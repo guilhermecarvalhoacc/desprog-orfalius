@@ -23,7 +23,13 @@ A ideia é lembrar que estamos ordenando numeros inteiros e que seus indices (no
 
 Para entender melhor esse conceito vamos imaginar um mundo ideial onde temos:
 
-* Todos os 
+* Todos os elementos do array a ser ordenado são positivos.
+
+* não existe repetição de elementos.
+
+* Conhecemos qual o maior valor desse array.
+
+
 
 
 Você também pode criar
