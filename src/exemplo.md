@@ -60,6 +60,20 @@ Ordene o vetor V = [8,3,10,1,7]. Não olhe o gabarito antes de tentar!
 
 ???
 
+Implementando o codigo do primeiro exemplo de ordenação 
+---------
+
+``` c
+void f() {
+    printf("hello world\n");
+}
+```
+Voltando para o Counting Sort 
+---------
+
+
+
+
 Você também pode criar
 
 1. listas;
