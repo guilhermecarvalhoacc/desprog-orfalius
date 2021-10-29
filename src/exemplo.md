@@ -113,10 +113,122 @@ void f() {
 
 Se não especificar nenhuma, o código fica com colorização de terminal.
 
-```
-hello world
+
+Função para encontrar o maior elemento do array (k):
+
+``` c
+
+int get_max(int a[], int n) {  
+   int max = a[0];  
+   for(int i = 1; i<n; i++) {  
+      if(a[i] > max)  
+         max = a[i];  
+   }  
+   return max; //maximum element from the array  
+}  
+
 ```
 
+Exemplo inicial:
+
+``` c
+#include <stdio.h>
+#include <stdbool.h>
+
+void sort(int *V, int len_v, int *b, int k) {
+    int C[k];
+    int j = 0;
+
+    for (int i=0; i < len_v; i++) {
+            C[V[i] - 1] = 1;
+    }
+
+    for (int i=0; i < k; i++) {
+        if (C[i] == true) {
+            b[j] = i+1;
+            j+=1;
+        }
+    }
+    return;
+}
+
+int main() {
+
+    int v[]   = {2,9,15,26,4,3};
+    int len_v = sizeof(v) / sizeof(v[0]);
+    int k     = get_max(v, len_v);
+
+    int b[len_v];
+
+    sort(v, len_v, b, k);
+    for (int i=0; i < len_v; i++) {
+        printf("%d, ", b[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+```
+
+
+Counting sort implementado em C
+``` c
+#include<stdio.h>  
+
+void count_sort(int a[], int n) {  
+  int output[n+1];  
+  int max = get_max(a, n);  
+  int count[max+1]; //create count array with size [max+1]  
+  
+  // Inicializa o array de contagem com zeros
+  for (int i = 0; i <= max; ++i)   {  
+    count[i] = 0; 
+  }  
+    
+  //frequencia
+  for (int i = 0; i < n; i++){ 
+    count[a[i]]++;  
+  }  
+
+  //cumulativa
+  for(int i = 1; i<=max; i++)   
+    count[i] += count[i-1]; 
+  
+  /* Loop para encontrar o indice de cada elemento do array original dentro do array de contagem,
+  e alocar no array output */
+
+  for (int i = n - 1; i >= 0; i--) {  
+    output[count[a[i]] - 1] = a[i];  
+    count[a[i]]--; // decrease count for same numbers  
+   }  
+
+  // Sobrescrever o array de entrada com o array ordenado
+  for(int i = 0; i<n; i++) {  
+     a[i] = output[i];
+  }  
+}  
+  
+void printArr(int a[], int n) {  
+    int i;  
+    for (i = 0; i < n; i++) {
+        printf("%d ", a[i]);  
+    }
+}  
+  
+int main() {  
+    int a[] = { 5,1,6,3,29,1,4,29};  
+    int n = sizeof(a)/sizeof(a[0]);  
+    printf("Before sorting array elements are - \n");  
+    printArr(a, n);  
+    count_sort(a, n);  
+    printf("\nAfter sorting array elements are - \n");    
+    printArr(a, n);  
+    printf(\n);
+    return 0;  
+}  
+```
+
+Referencia: https://www.javatpoint.com/counting-sort
 
 !!! Aviso
 Este é um exemplo de aviso, entre `md !!!`.
