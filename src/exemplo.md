@@ -168,6 +168,7 @@ imagens estão. Essa pasta também deve estar em *img*.
 
 ;bubble
 
+
 Você também pode inserir código, inclusive especificando a linguagem.
 
 ``` py
