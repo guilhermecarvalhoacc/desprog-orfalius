@@ -19,18 +19,46 @@ Diferente disso o Counting Sort que é o algoritmo abordado neste handout não u
 
 Mas espera ai, como assim ele não utiliza de comparação ? Antes de prosseguirmos com a explicação do counting sort, vamos mostrar como pode ser feita a ordenação de um vetor sem utilizar comparação.
 
-A ideia é lembrar que estamos ordenando numeros inteiros e que seus indices (no array) também são inteiros, assim podemos usar um vetor auxiliar e mapear o valor presente em uma sequência para uma posição de mesmo valor (array[i] = i).
+A ideia é lembrar que estamos ordenando numeros inteiros e que seus indices (no array) também são inteiros, dessa forma  podemos usar um vetor auxiliar e mapear o valor presente em uma sequência para uma posição de mesmo valor nesse vetor (array[i] = i).
 
 Para entender melhor esse conceito vamos imaginar um mundo ideial onde temos:
 
-* Todos os elementos do array a ser ordenado são positivos.
-
 * não existe repetição de elementos.
+
+* Todos os elementos do array a ser ordenado são positivos.
 
 * Conhecemos qual o maior valor desse array.
 
+Assim se quisermos ordenar o vetor V = [6,1,4,2,3], basta criarmos um vetor auxiliar C de tamanho 6, pois é o maior elemento do vetor V e interar seguindo a instrução: C[V[i] - 1] = True, ou seja pega o valor do elemento do vetor V diminue 1 e coloca True no lugar desse indice.
 
+Assim teremos: 
 
+C = [True,True,True,True,False,True]
+
+Agora temos que criar um vetor B do tamanho de V pois o output deve ser o mesmo vetor so que ordenado, e onde tiver True acrescenta 1 ao valor do indice, por exemplo :
+    
+Temos True na posição i = 0,1,2,3,5  assim basta somarmos 1 para cada valor do indice e adicionar no vetor B
+
+B = [1,2,3,4,6]
+
+Agora vamos fazer um exercicio para fixar a ideia na cabeça
+
+??? Exercício
+
+Ordene o vetor V = [8,3,10,1,7]. Não olhe o gabarito antes de tentar!
+
+::: Gabarito
+1. Primeiro criamos o vetor auxiliar
+
+    C = [True,False,True,False,False,False,True,True,False,True]
+
+2. Criando o vetor B do tamanho de V somando 1 onde tem True
+
+    B = [1,3,7,8,10]
+
+:::
+
+???
 
 Você também pode criar
 
