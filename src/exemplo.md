@@ -5,7 +5,7 @@ Ordenação por contagem
 ---------
 Antes de começarmos o handout vamos responder a uma pergunta:
 
-??? Exercício
+??? Checkpoint
 
 O que algoritmos de ordenação como Selection Sort Bubble Sort e Insertion Sort tem em comum? 
 
@@ -71,23 +71,79 @@ void f() {
 Voltando para o Counting Sort 
 ---------
 
+Ta bom mas nosso primeiro exemplo era mais simples, pois não tinha repetição, mas e se tivessemos numeros repetidos num vetor a ser ordenado, o que seria feito? Agora sim vamos falar diretamente do counting sort.
+
+A ideia desse algoritmo é parecida com a ideia que vimos anteriormente, porem tem algumas coisas diferentes, como por exemplo ele coloca a frequencia dos numeros no array auxiliar, ou seja no lugar do vetor C ser um vetor de booleanos ele será de inteiros.
+
+Para se ordenar com counting sort pode-se seguir os seguintes passos 
+
+1. Registrar a frequencia dos elementos do vetor V no vetor auxiliar C ( o qual o tamanho vai ser o do maior elemento de V) seguindo a instrução C [V[i] - 1] += 1.
+
+2. Fazer a soma cumulativa do vetor anterior com o proximo e alocar neste próximo, ou seja C[i] = C[i] + C[i-1].
+
+3. Interar sobre V registrando no vetor B com a instrução B[C[V[i] - 1] - 1] = V[i] apos isso fazer C[V[i]-1] -= 1, pois se ouver outro valor repetido ele irá para uma posição anterior deixando ordenado.
+
+Assim, ordenando o vetor V = [1,3,1,5,2,2]  seguindo os passos anteriores como fariamos? 
+
+??? Checkpoint
+
+Passo 1:
+
+Registrando a frequencia teriamos: 
+
+::: Gabarito
+C = [2,2,1,0,1] 
+
+perceba que temos um vetor de tamanho 5, pois é o maior valor do vetor inicial V (parecido com o que vimos na primeira ideia desse handout)
+:::
+
+???
+
+??? Checkpoint
+
+Passo 2:
+
+Fazendo a soma acumulativa:
+
+::: Gabarito
+C = [2,2,1,0,1] => C = [2,4,5,5,6]  
+
+Perceba que somamos 2 + 2 dando 4 e alocando na segunda posição, somamdos 4 + 1 dando 5 e alocando na posição 3, e assim por diante.
+:::
+
+???
+
+??? Checkpoint
+
+Passo 3:
+
+Interando usando a instrução B[C[V[i] - 1] - 1] = V[i]:
+
+::: Gabarito
+C = [2,2,1,0,1] => C = [2,4,5,5,6]  
+
+temos V = [1,3,1,5,2,2] 
+      C = [2,4,5,5,6]
+Fazendo o B por partes temos: 
+
+Começando pegando o ultimo numero do vetor: V[5] ==> B[C[2 - 1] - 1] = V[5]  --> B[C[1] - 1] = V[5] ==> B[4 - 1] = V[5] ==> B[3] = 2
+Apos isso teriamos que fazer a instrução C[V[i]-1] -= 1 para que se tiver um numero repetido ele va para uma posição anterior.
+
+Logo, nosso vetor C ficaria C[2 - 1] -= 1 ==> C = [2,3,5,5,6] ( Perceba que onde era 4 na segunda posição do vetor agora é um 3)
+
+Assim: preenchemos a posição 3 do vetor B, B = [Null,Null,Null,2,Null,Null] (deixei escrito Null apenas para mostrar que ainda não preenchemos essas partes.)
+
+Continuando teriamos: B = [1,1,2,2,3,5]
+
+:::
+
+???
 
 
+Complexidade do Counting Sort
+-------------------------
 
-Você também pode criar
-
-1. listas;
-
-2. ordenadas,
-
-assim como
-
-* listas;
-
-* não-ordenadas
-
-* testando entao
-
+Sabemos que o Counting Sort usa apenas loops de for simples sem cahamdas recurssivas nem outras coisas um poucos mais complicadas, assim analisar sua complexidade fica fácil, temos um loop 
 e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
 
 ![](logo.png)
