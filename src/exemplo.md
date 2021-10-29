@@ -1,10 +1,30 @@
-Título
+Algoritmo Counting Sort 
 ======
 
-Subtítulo
+Ordenação por contagem
 ---------
+Antes de começarmos o handout vamos responder a uma pergunta:
 
-Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
+??? Exercício
+
+O que algoritmos de ordenação como Selection Sort Bubble Sort e Insertion Sort tem em comum? 
+
+::: Gabarito
+Todos eles são algoritmos que usam comparação para ordenar valores em um vetor.
+:::
+
+???
+
+Diferente disso o Counting Sort que é o algoritmo abordado neste handout não utiliza de comparação para ordenar os valores, este algoritmo serve para ordenar **apenas** valores inteiros e positivos de um vetor, assim ele pode ser implementado para criação de rankings ou para ordens de prioridades dea tendimento por exemplo.
+
+Mas espera ai, como assim ele não utiliza de comparação ? Antes de prosseguirmos com a explicação do counting sort, vamos mostrar como pode ser feita a ordenação de um vetor sem utilizar comparação.
+
+A ideia é lembrar que estamos ordenando numeros inteiros e que seus indices (no array) também são inteiros, assim podemos usar um vetor auxiliar e mapear o valor presente em uma sequência para uma posição de mesmo valor (array[i] = i).
+
+Para entender melhor esse conceito vamos imaginar um mundo ideial onde temos:
+
+* Todos os 
+
 
 Você também pode criar
 
@@ -17,6 +37,8 @@ assim como
 * listas;
 
 * não-ordenadas
+
+* testando entao
 
 e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
 
