@@ -23,7 +23,7 @@ A ideia é lembrar que estamos ordenando numeros inteiros e que seus indices (no
 
 Para entender melhor esse conceito vamos imaginar um mundo ideial onde temos:
 
-* não existe repetição de elementos.
+* Não existe repetição de elementos.
 
 * Todos os elementos do array a ser ordenado são positivos.
 
@@ -33,13 +33,36 @@ Assim se quisermos ordenar o vetor V = [6,1,4,2,3], basta criarmos um vetor auxi
 
 Assim teremos: 
 
+??? Checkpoint
+
+Observe a instrução e tente criar o vetor C 
+
+::: Gabarito
+
 C = [True,True,True,True,False,True]
 
+:::
+
+???
+
+
+
 Agora temos que criar um vetor B do tamanho de V pois o output deve ser o mesmo vetor so que ordenado, e onde tiver True acrescenta 1 ao valor do indice, por exemplo :
-    
-Temos True na posição i = 0,1,2,3,5  assim basta somarmos 1 para cada valor do indice e adicionar no vetor B
+
+??? Checkpoint
+
+Crie o vetor B
+
+::: Gabarito
+Temos True na posições i = 0,1,2,3,5  assim basta somarmos 1 para cada valor do indice e adicionar no vetor B
 
 B = [1,2,3,4,6]
+
+:::
+
+???
+
+
 
 Agora vamos fazer um exercicio para fixar a ideia na cabeça
 
@@ -63,10 +86,44 @@ Ordene o vetor V = [8,3,10,1,7]. Não olhe o gabarito antes de tentar!
 Implementando o codigo do primeiro exemplo de ordenação 
 ---------
 
+
 ``` c
-void f() {
-    printf("hello world\n");
+#include <stdio.h>
+#include <stdbool.h>
+
+void sort(int *V, int len_v, int *b, int k) {
+    int C[k];
+    int j = 0;
+
+    for (int i=0; i < len_v; i++) {
+            C[V[i] - 1] = 1;
+    }
+
+    for (int i=0; i < k; i++) {
+        if (C[i] == true) {
+            b[j] = i+1;
+            j+=1;
+        }
+    }
+    return;
 }
+
+int main() {
+
+    int v[]   = {2,9,15,26,4,3};
+    int len_v = sizeof(v) / sizeof(v[0]);
+    int k     = get_max(v, len_v);
+
+    int b[len_v];
+
+    sort(v, len_v, b, k);
+    for (int i=0; i < len_v; i++) {
+        printf("%d, ", b[i]);
+    }
+
+    printf("\n");
+
+    return 0;
 ```
 Voltando para o Counting Sort 
 ---------
@@ -126,7 +183,7 @@ temos V = [1,3,1,5,2,2]
       C = [2,4,5,5,6]
 Fazendo o B por partes temos: 
 
-Começando pegando o ultimo numero do vetor: V[5] ==> B[C[2 - 1] - 1] = V[5]  --> B[C[1] - 1] = V[5] ==> B[4 - 1] = V[5] ==> B[3] = 2
+Começando pegando o ultimo numero do vetor: V[5] ==> B[C[2 - 1] - 1] = V[5]  ==> B[C[1] - 1] = V[5] ==> B[4 - 1] = V[5] ==> B[3] = 2
 Apos isso teriamos que fazer a instrução C[V[i]-1] -= 1 para que se tiver um numero repetido ele va para uma posição anterior.
 
 Logo, nosso vetor C ficaria C[2 - 1] -= 1 ==> C = [2,3,5,5,6] ( Perceba que onde era 4 na segunda posição do vetor agora é um 3)
@@ -139,179 +196,149 @@ Continuando teriamos: B = [1,1,2,2,3,5]
 
 ???
 
-
-Complexidade do Counting Sort
--------------------------
-
-Sabemos que o Counting Sort usa apenas loops de for simples sem cahamdas recurssivas nem outras coisas um poucos mais complicadas, assim analisar sua complexidade fica fácil, temos um loop 
-e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
-
-![](logo.png)
-
-Para tabelas, usa-se a [notação do
-MultiMarkdown](https://fletcher.github.io/MultiMarkdown-6/syntax/tables.html),
-que é muito flexível. Vale a pena abrir esse link para saber todas as
-possibilidades.
-
-| coluna a | coluna b |
-|----------|----------|
-| 1        | 2        |
-
-Ao longo de um texto, você pode usar *itálico*, **negrito**, {red}(vermelho) e
-[[tecla]]. Também pode usar uma equação LaTeX: $f(n) \leq g(n)$. Se for muito
-grande, você pode isolá-la em um parágrafo.
-
-$$\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq 1$$
-
-Para inserir uma animação, use `md ;` seguido do nome de uma pasta onde as
-imagens estão. Essa pasta também deve estar em *img*.
-
-;bubble
-
-
-Você também pode inserir código, inclusive especificando a linguagem.
-
-``` py
-def f():
-    print('hello world')
-```
-
-``` c
-void f() {
-    printf("hello world\n");
-}
-```
-
-Se não especificar nenhuma, o código fica com colorização de terminal.
-
-
-Função para encontrar o maior elemento do array (k):
-
-``` c
-
-int get_max(int a[], int n) {  
-   int max = a[0];  
-   for(int i = 1; i<n; i++) {  
-      if(a[i] > max)  
-         max = a[i];  
-   }  
-   return max; //maximum element from the array  
-}  
-
-```
-
-Exemplo inicial:
-
-``` c
-#include <stdio.h>
-#include <stdbool.h>
-
-void sort(int *V, int len_v, int *b, int k) {
-    int C[k];
-    int j = 0;
-
-    for (int i=0; i < len_v; i++) {
-            C[V[i] - 1] = 1;
-    }
-
-    for (int i=0; i < k; i++) {
-        if (C[i] == true) {
-            b[j] = i+1;
-            j+=1;
-        }
-    }
-    return;
-}
-
-int main() {
-
-    int v[]   = {2,9,15,26,4,3};
-    int len_v = sizeof(v) / sizeof(v[0]);
-    int k     = get_max(v, len_v);
-
-    int b[len_v];
-
-    sort(v, len_v, b, k);
-    for (int i=0; i < len_v; i++) {
-        printf("%d, ", b[i]);
-    }
-
-    printf("\n");
-
-    return 0;
-```
-
-
-Counting sort implementado em C
+Um exemplo de Counting sort implementado em C
+-------
 ``` c
 #include<stdio.h>  
 
-void count_sort(int a[], int n) {  
+void count_sort(int v[], int n) {  
   int output[n+1];  
-  int max = get_max(a, n);  
-  int count[max+1]; //create count array with size [max+1]  
+  int max = get_max(v, n);  
+  int c[max+1]; //create count array with size [max+1]  
   
   // Inicializa o array de contagem com zeros
   for (int i = 0; i <= max; ++i)   {  
-    count[i] = 0; 
+    c[i] = 0; 
   }  
     
   //frequencia
   for (int i = 0; i < n; i++){ 
-    count[a[i]]++;  
+    c[v[i]]++;  
   }  
 
   //cumulativa
   for(int i = 1; i<=max; i++)   
-    count[i] += count[i-1]; 
+    c[i] += c[i-1]; 
   
   /* Loop para encontrar o indice de cada elemento do array original dentro do array de contagem,
   e alocar no array output */
 
   for (int i = n - 1; i >= 0; i--) {  
-    output[count[a[i]] - 1] = a[i];  
-    count[a[i]]--; // decrease count for same numbers  
+    output[c[a[i]] - 1] = v[i];  
+    c[v[i]]--; // decrease count for same numbers  
    }  
 
   // Sobrescrever o array de entrada com o array ordenado
   for(int i = 0; i<n; i++) {  
-     a[i] = output[i];
+     v[i] = output[i];
   }  
 }  
   
-void printArr(int a[], int n) {  
+void printarr(int a[], int n) {  
     int i;  
     for (i = 0; i < n; i++) {
         printf("%d ", a[i]);  
     }
 }  
   
-int main() {  
-    int a[] = { 5,1,6,3,29,1,4,29};  
-    int n = sizeof(a)/sizeof(a[0]);  
-    printf("Before sorting array elements are - \n");  
-    printArr(a, n);  
-    count_sort(a, n);  
-    printf("\nAfter sorting array elements are - \n");    
-    printArr(a, n);  
-    printf(\n);
-    return 0;  
-}  
 ```
 
-Referencia: https://www.javatpoint.com/counting-sort
 
-!!! Aviso
-Este é um exemplo de aviso, entre `md !!!`.
-!!!
+Complexidade do Counting Sort
+-------------------------
+
+Sabemos que o Counting Sort usa apenas loops de for simples sem cahamdas recurssivas nem outras coisas um poucos mais complicadas, assim analisar sua complexidade fica fácil, temos 2 loops que percorrem o vetor auxiliar c e de tamanho K (valor maximo do vetor V).
+
+``` c
+  for (int i = 0; i <= max; ++i)   {  
+    c[i] = 0; 
+  }  
+
+// sendo k o maior valor do vetor V, temos assim k + 1 interações nesse loop, analisando o outro loop com k vemos que este tem k interações.
+```
+Assim ja temos complexidade  O(k)
+
+Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algoritmo inteiro possui compexidade O(n+K).
+
+
+Simulação do Counting Sor
+-------
+
+Simulando a ordenação para um vetor A = [1,2,7,2,5,4,6]
+
+;bubble
+
+
+
+Exercicios para Praticar
+------
 
 
 ??? Exercício
 
-Este é um exemplo de exercício, entre `md ???`.
+Ordene o vetor V = [-15,-8,5,1,5,0] 
+
+(Uma dica: transforme os vetores em inteiros positivos para usar o counting sort)
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+Primeiro some 15 a todos os elementos, pois é o numero mais negativo, assim todos ficarão positivos.
+
+V = [0,7,20,16,20,15]
+
+Agora pode ordenar usando o counting sort
+
+V = [0,7,15,16,20,20]
+
+Agora subtraia 15 de cada elemento para voltar a serem os elementos do vetor inicial
+
+V = [-15,-8,0,1,5,5]
 :::
 
 ???
+
+
+??? Exercício
+
+Ordene o vetor V = [-10.5, -12.6, -3.2, 30.9, -10.7, 2.8]
+
+
+::: Gabarito
+Primeiro some 12.6 a todos os elementos, pois é o numero mais negativo, assim todos ficarão positivos.
+
+V = [2.1,0,9.4,43.5,1.9,15.4]
+
+Agora multiplique todos os numeros por 10 
+
+V = [21,0,94,435,19,154]
+
+Agora ordene usando o counting sort
+
+V = [0,19,21,94,154,435]
+
+Agora desfaça todas as operações feitas ( multiplicação por 10 e a soma por 12.6)
+
+Assim temos 
+
+V = [-12.6,-10.7,-10.5,-3.2,2.8,30.9]
+
+:::
+
+???
+
+
+
+
+
+
+
+
+Referências:
+------
+
+Teoria e alguns exemplos:   <https://joaoarthurbm.github.io/eda/posts/ordenacao-linear/>
+
+Comandos:<https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-markdown#open>
+
+Alguns exercicios: <https://docplayer.com.br/140797087-Topico-5-algoritmos-de-ordenacao-parte-ii-metodos-de-ordenacao-counting-sort-radix-sort-e-bucket-sort.html>
+
+
