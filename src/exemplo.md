@@ -3,19 +3,8 @@ Algoritmo Counting Sort
 
 Ordenação por contagem
 ---------
-Antes de começarmos o handout vamos responder a uma pergunta:
 
-??? Checkpoint
-
-O que algoritmos de ordenação como Selection Sort Bubble Sort e Insertion Sort tem em comum? 
-
-::: Gabarito
-Todos eles são algoritmos que usam comparação para ordenar valores em um vetor.
-:::
-
-???
-
-Diferente disso o Counting Sort que é o algoritmo abordado neste handout não utiliza de comparação para ordenar os valores, este algoritmo serve para ordenar **apenas** valores inteiros e positivos de um vetor, assim ele pode ser implementado para criação de rankings ou para ordens de prioridades dea tendimento por exemplo.
+Diferente de outros algoritmos de ordenação o Counting Sort que é o algoritmo abordado neste handout não utiliza de comparação para ordenar os valores, este algoritmo serve para ordenar **apenas** valores inteiros e positivos de um vetor, assim ele pode ser implementado para criação de rankings ou para ordens de prioridades dea tendimento por exemplo.
 
 Mas espera ai, como assim ele não utiliza de comparação ? Antes de prosseguirmos com a explicação do counting sort, vamos mostrar como pode ser feita a ordenação de um vetor sem utilizar comparação.
 
@@ -29,7 +18,7 @@ Para entender melhor esse conceito vamos imaginar um mundo ideial onde temos:
 
 * Conhecemos qual o maior valor desse array.
 
-Assim se quisermos ordenar o vetor V = [6,1,4,2,3], basta criarmos um vetor auxiliar C de tamanho 6, pois é o maior elemento do vetor V e interar seguindo a instrução: C[V[i] - 1] = True, ou seja pega o valor do elemento do vetor V diminue 1 e coloca True no lugar desse indice.
+Assim se quisermos ordenar o vetor V = [9,1,4,2,3], basta criarmos um vetor auxiliar C de tamanho 6, pois é o maior elemento do vetor V e interar seguindo a instrução: C[V[i] - 1] = True, ou seja pega o valor do elemento do vetor V diminue 1 e coloca True no lugar desse indice.
 
 Assim teremos: 
 
@@ -39,7 +28,7 @@ Observe a instrução e tente criar o vetor C
 
 ::: Gabarito
 
-C = [True,True,True,True,False,True]
+C = [True,True,True,True,False,False,False,False,False,True]
 
 :::
 
@@ -54,9 +43,9 @@ Agora temos que criar um vetor B do tamanho de V pois o output deve ser o mesmo 
 Crie o vetor B
 
 ::: Gabarito
-Temos True na posições i = 0,1,2,3,5  assim basta somarmos 1 para cada valor do indice e adicionar no vetor B
+Temos True na posições i = 0,1,2,3,9  assim basta somarmos 1 para cada valor do indice e adicionar no vetor B
 
-B = [1,2,3,4,6]
+B = [1,2,3,4,10]
 
 :::
 
@@ -125,10 +114,58 @@ int main() {
 
     return 0;
 ```
+
+Usando vetor de contagem de forma simples
+---------
+Antes de finalmente vermos o Counting Sort, vamos entender como seria utilizando um vetor auxiliar de contagem e não um binário como vimos mais acima.
+
+Imagine agora a mesma situação descrita acima, mas agora temos numero repetidos no vetor que queremos ordenar
+
+Imaginemos o seguinte vetor V = [1,10,1,1,3,3,4,5]
+
+realizando o mesmo passo de criar o vetor auxiliar C, mas agora ele terá a frequencia com que o numero aparece, ou seja C[V[i] - 1] +=1 , no lugar de colocar True, adicionamos 1 para mostrar que aquele numero apareceu mais uma vez.
+
+??? Checkpoint
+
+Crie o vetor C com base na explicação acima
+
+::: Gabarito
+
+Usando a mesma logica so que agora contando quantas vezes aparece tal numero teriamos:
+
+C = [3,0,2,1,1,0,0,0,0,1]
+
+Perceba que o vetor tem tamanho 10, pois é o maior valor do vetor V, e onde tem 0 significa que não tem aparição do número correspondente no vetor V.
+
+:::
+
+???
+
+Agora seguindo a mesma logica ja estudada, vamos construir o vetor B. Primeiro observa-se as posições que não tem 0 e soma-se 1, então repita esse valor com base no numero que estiver nessa posição, por execmplo, no vetor C o numero 3 está na posição 0, então no vetor B será B = [1,1,1,?,?,?,?,?].
+
+??? Checkpoint
+
+Complete o vetor B com base no que foi explicado acima
+
+::: Gabarito
+
+Seguindo a mesma lógica, temos 2 na posição 2, e 1's nas posições 3,4 e 9.
+
+Assim, temos que o vetor B será:
+
+B = [1,1,1,2,2,4,5,10]
+
+:::
+
+???
+
+
+
+
 Voltando para o Counting Sort 
 ---------
 
-Ta bom mas nosso primeiro exemplo era mais simples, pois não tinha repetição, mas e se tivessemos numeros repetidos num vetor a ser ordenado, o que seria feito? Agora sim vamos falar diretamente do counting sort.
+Ta bom mas nossos  exemplos eram simples, agora sim vamos falar diretamente do counting sort.
 
 A ideia desse algoritmo é parecida com a ideia que vimos anteriormente, porem tem algumas coisas diferentes, como por exemplo ele coloca a frequencia dos numeros no array auxiliar, ou seja no lugar do vetor C ser um vetor de booleanos ele será de inteiros.
 
