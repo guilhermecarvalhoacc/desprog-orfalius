@@ -298,7 +298,7 @@ Assim já temos complexidade  O(k)
 Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algoritmo inteiro possui complexidade O(n+K).
 
 
-Simulação do Counting Sor
+Simulação do Counting Sort
 -------
 
 Simulando a ordenação para um vetor A = [1,2,7,2,5,4,6]
@@ -362,11 +362,10 @@ V = [-12.6,-10.7,-10.5,-3.2,2.8,30.9]
 
 ???
 
+Melhor algorítmo possível?
+------
 
-
-
-
-
+Até o presente momento conhecemos diversos algorítmos de ordenação diferentes, mas o counting sort se destaca por sua baixa complexidade. Entretanto, é importante frisar que como todos os outros, cada algorítmo possui uma situação de aplicação mais indicada. O counting sort, por exemplo, é extremamente linear em situações de elementos limitados. Caso contrário, o vetor contador terá muitos elementos, o que tornaria o algorítmo muito mais lento que outros previamente estudados.
 
 
 Referências:
