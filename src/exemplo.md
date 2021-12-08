@@ -58,7 +58,7 @@ Agora vamos fazer um exercício para fixar a ideia na cabeça
 
 ??? Exercício
 
-Ordene o vetor V = [8,3,10,1,7]. Não olhe o gabarito antes de tentar!
+Ordene o vetor V = [8,3,10,1,7], com base na ideia que acabamos de apresentar. Não olhe o gabarito antes de tentar!
 
 ::: Gabarito
 1. Primeiro criamos o vetor auxiliar
@@ -82,17 +82,17 @@ Implementando o código do primeiro exemplo de ordenação
 #include <stdbool.h>
 
 void sort(int *V, int len_v, int *b, int k) {
-    int C[k];
-    int j = 0;
+    int vetor_c[k]
+    int idx_posicao = 0;
 
-    for (int i=0; i < len_v; i++) {
-            C[V[i]] = 1;
+    para cada i de 0 até i < len_v {
+        C[V[i]] = 1;
     }
 
-    for (int i=0; i < k; i++) {
-        if (C[i] == true) {
-            b[j] = i;
-            j+=1;
+    para cada i de 0 até i <= k {
+        se (vetor_c[i] é true) {
+            b[idx_posicao] = i;
+            idx_posicao += 1;
         }
     }
     return;
@@ -101,20 +101,23 @@ void sort(int *V, int len_v, int *b, int k) {
 int main() {
 
     int v[]   = {2,9,15,26,4,3};
-    int len_v = sizeof(v) / sizeof(v[0]);
-    int k     = get_max(v, len_v);
+    int len_v = tamanho(v)
+    int k     = maior_numero(v);
 
     int b[len_v];
 
     sort(v, len_v, b, k);
-    for (int i=0; i < len_v; i++) {
-        printf("%d, ", b[i]);
+
+    para cada i até len_v {
+        print(b[i]);
     }
 
     printf("\n");
 
     return 0;
+}
 ```
+
 
 ??? Exercicio
 
@@ -125,8 +128,7 @@ Calcule a complexidade desse algoritmo que acabamos de ver.
 Sabemos que esse algoritmo usa apenas loops de for simples sem chamadas recurssivas nem outras coisas um poucos mais complicadas, assim analisar sua complexidade fica fácil, temos 1 loop que percorrem o vetor auxiliar c e de tamanho K (valor maximo do vetor V).
 
 
-// sendo k o maior valor do vetor V, temos assim k interações nesse loop, analisando o outro loop com k vemos que este tem k interações.
-```
+sendo k (o maior valor do vetor V) + 1, temos assim k interações nesse loop.
 Assim ja temos complexidade  O(k)
 
 Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algoritmo inteiro possui compexidade O(n+K).
@@ -134,6 +136,7 @@ Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algo
 :::
 
 ???
+
 
 
 Usando vetor de contagem de forma simples
