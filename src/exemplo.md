@@ -13,6 +13,7 @@ Mas espera aí, como assim ele não utiliza de comparação ? Antes de prossegui
 
 A ideia é lembrar que estamos ordenando números inteiros e que seus índices (no array) também são inteiros, dessa forma  podemos usar um vetor auxiliar e mapear o valor presente em uma sequência para uma posição de mesmo valor nesse vetor (array[i] = i).
 
+
 Para entender melhor esse conceito vamos imaginar um mundo ideal onde temos:
 
 * Não existe repetição de elementos.
@@ -21,7 +22,9 @@ Para entender melhor esse conceito vamos imaginar um mundo ideal onde temos:
 
 * Conhecemos qual o maior valor desse array.
 
+
 Assim se quisermos ordenar o vetor V = [9,1,4,2,3], basta criarmos um vetor auxiliar C de tamanho 10, pois é o maior elemento do vetor V e iterar seguindo a instrução: C[V[i]] = True, ou seja pega o valor do elemento do vetor V e coloca True no lugar desse índice.
+
 
 Assim teremos: 
 
@@ -39,12 +42,18 @@ C = [False,True,True,True,True,False,False,False,False,True]
 
 Agora temos que criar um vetor B do tamanho de V pois o output deve ser o mesmo vetor só que ordenado, e pegaremos o índice do elemento que tiver como True, por exemplo :
 
+
+
+
+
 ??? Checkpoint
 
 Crie o vetor B
 
 ::: Gabarito
+
 Temos True na posições i = 1,2,3,4,9  assim basta pegarmos cada valor do índice e adicionar no vetor B
+
 
 B = [1,2,3,4,9]
 
@@ -165,7 +174,9 @@ Perceba que o vetor tem tamanho 11, pois é o maior valor do vetor V + 1 (pois c
 
 ???
 
-Agora seguindo a mesma lógica já estudada, vamos construir o vetor B. Primeiro observa-se as posições que não tem 0 e soma-se 1,então repita esse valor com base no número que estiver nessa posição, por exemplo, no vetor C o número 0 está na posição 0, e o 3 está na posição 1, então no vetor B será: B = [?,?,?,?,?,?,?,?].
+
+Agora seguindo a mesma lógica já estudada, vamos construir o vetor B. Primeiro observa-se as posições que não tem 0 e então repita esse valor com base no número que estiver nessa posição, por exemplo, no vetor C o número 0 está na posição 0, e o 3 está na posição 1, então no vetor B será: B = [?,?,?,?,?,?,?,?].
+
 
 ??? Checkpoint
 
@@ -188,9 +199,11 @@ B = [1,1,1,3,3,4,5,10]
 Voltando para o Counting Sort 
 ---------
 
+
 Ta bom, mas nossos  exemplos eram simples, e é importante lembrar que as versões anteriormente vistas nesse handout se baseiam em escrever a versao ordenada do vetor e não copiar os elementos do vetor original, no entenato essa estrategia nao vai funcionar para versoes mais complexas como por exemplo ordenação de alunos por numero de matricula, não da pra escrever os numeros de matricula, teria que copiar.
 
-A ideia desse algoritmo é parecida com a ideia que vimos anteriormente, porem tem algumas coisas diferentes, como por exemplo ele coloca a frequencia dos numeros no array auxiliar, ou seja no lugar do vetor C ser um vetor de booleanos ele será de inteiros.
+
+A ideia desse algoritmo é parecida com a ideia que vimos anteriormente, porém tem algumas coisas diferentes, como por exemplo ele coloca a frequência dos números no array auxiliar, ou seja no lugar do vetor C ser um vetor de booleanos ele será de inteiros.
 
 Continuando com a ideia de contar o numero de vezes que algum elemento apareceu. Assim vamos imaginar que temos 3 zeros, não podemos simplesmentes escrever eles, temos que conseguir uma estrategia, uma estrategia boa seria encontrar a posição do ultimo zero., ou seja o contador está entregando a posição do ultimo. 
 
@@ -212,19 +225,19 @@ Agora que ja temos uma noção melhor sobre o counting sort, vamos para uma sequ
 
 Para se ordenar com counting sort pode-se seguir os seguintes passos 
 
-1. Registrar a frequencia dos elementos do vetor V no vetor auxiliar C ( o qual o tamanho vai ser o do maior elemento de V) seguindo a instrução C [V[i] - 1] += 1.
+1. Registrar a frequência dos elementos do vetor V no vetor auxiliar C ( o qual o tamanho vai ser o do maior elemento de V) seguindo a instrução C [V[i] - 1] += 1.
 
-2. Fazer a soma cumulativa do vetor anterior com o proximo e alocar neste próximo, ou seja C[i] = C[i] + C[i-1].
+2. Fazer a soma cumulativa do vetor anterior com o próximo e alocar neste próximo, ou seja C[i] = C[i] + C[i-1].
 
-3. Interar sobre V registrando no vetor B com a instrução B[C[V[i] - 1] - 1] = V[i] apos isso fazer C[V[i]-1] -= 1, pois se ouver outro valor repetido ele irá para uma posição anterior deixando ordenado.
+3. Interar sobre V registrando no vetor B com a instrução B[C[V[i] - 1] - 1] = V[i] após isso fazer C[V[i]-1] -= 1, pois se houver outro valor repetido ele irá para uma posição anterior deixando ordenado.
 
-Assim, ordenando o vetor V = [1,3,1,5,2,2]  seguindo os passos anteriores como fariamos? 
+Assim, ordenando o vetor V = [1,3,1,5,2,2]  seguindo os passos anteriores como faríamos? 
 
 ??? Checkpoint
 
 Passo 1:
 
-Registrando a frequencia teriamos: 
+Registrando a frequência teriamos: 
 
 ::: Gabarito
 C = [2,2,1,0,1] 
@@ -243,7 +256,7 @@ Fazendo a soma acumulativa:
 ::: Gabarito
 C = [2,2,1,0,1] => C = [2,4,5,5,6]  
 
-Perceba que somamos 2 + 2 dando 4 e alocando na segunda posição, somamdos 4 + 1 dando 5 e alocando na posição 3, e assim por diante.
+Perceba que somamos 2 + 2 dando 4 e alocando na segunda posição, somados 4 + 1 dando 5 e alocando na posição 3, e assim por diante.
 :::
 
 ???
@@ -262,13 +275,13 @@ temos V = [1,3,1,5,2,2]
 Fazendo o B por partes temos: 
 
 Começando pegando o ultimo numero do vetor: V[5] ==> B[C[2 - 1] - 1] = V[5]  ==> B[C[1] - 1] = V[5] ==> B[4 - 1] = V[5] ==> B[3] = 2
-Apos isso teriamos que fazer a instrução C[V[i]-1] -= 1 para que se tiver um numero repetido ele va para uma posição anterior.
+Após isso teríamos que fazer a instrução C[V[i]-1] -= 1 para que se tiver um numero repetido ele vá para uma posição anterior.
 
 Logo, nosso vetor C ficaria C[2 - 1] -= 1 ==> C = [2,3,5,5,6] ( Perceba que onde era 4 na segunda posição do vetor agora é um 3)
 
 Assim: preenchemos a posição 3 do vetor B, B = [Null,Null,Null,2,Null,Null] (deixei escrito Null apenas para mostrar que ainda não preenchemos essas partes.)
 
-Continuando teriamos: B = [1,1,2,2,3,5]
+Continuando teríamos: B = [1,1,2,2,3,5]
 
 :::
 
@@ -289,7 +302,7 @@ void count_sort(int v[], int n) {
     c[i] = 0; 
   }  
     
-  //frequencia
+  //frequência
   for (int i = 0; i < n; i++){ 
     c[v[i]]++;  
   }  
@@ -298,7 +311,7 @@ void count_sort(int v[], int n) {
   for(int i = 1; i<=max; i++)   
     c[i] += c[i-1]; 
   
-  /* Loop para encontrar o indice de cada elemento do array original dentro do array de contagem,
+  /* Loop para encontrar o índice de cada elemento do array original dentro do array de contagem,
   e alocar no array output */
 
   for (int i = n - 1; i >= 0; i--) {  
@@ -326,6 +339,7 @@ Complexidade do Counting Sort
 -------------------------
 
 
+
 ??? Exercicio
 
 Calcule a complexidade do counting sort
@@ -334,16 +348,17 @@ Calcule a complexidade do counting sort
 
 Sabemos que o Counting Sort usa apenas loops de for simples sem cahamdas recurssivas nem outras coisas um poucos mais complicadas, assim analisar sua complexidade fica fácil, temos 2 loops que percorrem o vetor auxiliar c e de tamanho K (valor maximo do vetor V).
 
+
 ``` c
   for (int i = 0; i <= max; ++i)   {  
     c[i] = 0; 
   }  
 
-// sendo k o maior valor do vetor V, temos assim k + 1 interações nesse loop, analisando o outro loop com k vemos que este tem k interações.
+// sendo k o maior valor do vetor V, temos assim k + 1 iterações nesse loop, analisando o outro loop com k vemos que este tem k interações.
 ```
-Assim ja temos complexidade  O(k)
+Assim já temos complexidade  O(k)
 
-Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algoritmo inteiro possui compexidade O(n+K).
+Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algoritmo inteiro possui complexidade O(n+K).
 
 :::
 
@@ -352,7 +367,7 @@ Analisando os outros loops vemos que a complexidade é apenas O(n), assim o algo
 
 
 
-Simulação do Counting Sor
+Simulação do Counting Sort
 -------
 
 Simulando a ordenação para um vetor A = [1,2,7,2,5,4,6]
@@ -365,7 +380,9 @@ Simulando a ordenação para um vetor A = [1,2,7,2,5,4,6]
 
 
 
+
 Exercicios de desafio
+
 ------
 
 Vimos implementações para versões de elementos inteiros não negativos, será que podemos adaptar para resolver problemas com elementos negativos ou até decimais ?
@@ -377,7 +394,7 @@ Ordene o vetor V = [-15,-8,5,1,5,0]
 (Uma dica: transforme os vetores em inteiros positivos para usar o counting sort)
 
 ::: Gabarito
-Primeiro some 15 a todos os elementos, pois é o numero mais negativo, assim todos ficarão positivos.
+Primeiro some 15 a todos os elementos, pois é o número mais negativo, assim todos ficarão positivos.
 
 V = [0,7,20,16,20,15]
 
@@ -399,11 +416,11 @@ Ordene o vetor V = [-10.5, -12.6, -3.2, 30.9, -10.7, 2.8]
 
 
 ::: Gabarito
-Primeiro some 12.6 a todos os elementos, pois é o numero mais negativo, assim todos ficarão positivos.
+Primeiro some 12.6 a todos os elementos, pois é o número mais negativo, assim todos ficarão positivos.
 
 V = [2.1,0,9.4,43.5,1.9,15.4]
 
-Agora multiplique todos os numeros por 10 
+Agora multiplique todos os números por 10 
 
 V = [21,0,94,435,19,154]
 
@@ -421,11 +438,10 @@ V = [-12.6,-10.7,-10.5,-3.2,2.8,30.9]
 
 ???
 
+Melhor algorítmo possível?
+------
 
-
-
-
-
+Até o presente momento conhecemos diversos algorítmos de ordenação diferentes, mas o counting sort se destaca por sua baixa complexidade. Entretanto, é importante frisar que como todos os outros, cada algorítmo possui uma situação de aplicação mais indicada. O counting sort, por exemplo, é extremamente linear em situações de elementos limitados. Caso contrário, o vetor contador terá muitos elementos, o que tornaria o algorítmo muito mais lento que outros previamente estudados.
 
 
 Referências:
@@ -438,3 +454,5 @@ Comandos:<https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-
 Alguns exercicios: <https://docplayer.com.br/140797087-Topico-5-algoritmos-de-ordenacao-parte-ii-metodos-de-ordenacao-counting-sort-radix-sort-e-bucket-sort.html>
 
 
+
+ 
